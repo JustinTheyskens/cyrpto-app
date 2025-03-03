@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchCoins, CoinData } from "./utility/utility";
+import Doc from '/crypto-app/docs/documentation.md';
 
 // Home
 export default function Home() {
@@ -31,7 +32,7 @@ export default function Home() {
       {/* Search Input */}
       <input
         type="text"
-        placeholder="Search for a coin..."
+        placeholder="Search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{
