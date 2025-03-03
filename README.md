@@ -13,6 +13,9 @@ The app displays the top 10 Crypto Prices on the market in real-time by utilizin
 
 <b>Docusaurus</b> is an open-source static site generator (SSG) that streamlines the creation of documentation websites.
 
+## Preview
+![image](https://github.com/user-attachments/assets/580da633-7a9e-4c04-8b44-686be9a08b08)
+
 ## Getting Started
 
 First, run the development server:
