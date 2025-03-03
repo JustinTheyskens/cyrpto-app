@@ -1,14 +1,12 @@
-"use client";
-
-// pages/index.tsx
-
-"use client"; // Ensure it's a client component
+"use client"; // Important
 
 import { useEffect, useState } from "react";
 import { fetchCoins, CoinData } from "./utility/utility";
 
+// Home
 export default function Home() {
   const [coins, setCoins] = useState<CoinData[] | null>(null);
+  const [searchTerm, setSearchTerm] = useState(""); // State for search input
 
   useEffect(() => {
     const getCoins = async () => {
@@ -18,10 +16,33 @@ export default function Home() {
     getCoins();
   }, []);
 
+  // Filter coins based on search term
+  const filteredCoins = coins
+    ? coins.filter((coin) =>
+        coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
+
   return (
     <div>
       <h1>Top Cryptocurrencies</h1>
-      {coins ? (
+
+      {/* Search Input */}
+      <input
+        type="text"
+        placeholder="Search for a coin..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+          padding: "10px",
+          marginBottom: "10px",
+          width: "100%",
+          fontSize: "16px",
+        }}
+      />
+
+      {filteredCoins.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -32,7 +53,7 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {coins.map((coin) => (
+            {filteredCoins.map((coin) => (
               <tr key={coin.id}>
                 <td>{coin.rank}</td>
                 <td>{coin.name}</td>
@@ -43,11 +64,12 @@ export default function Home() {
           </tbody>
         </table>
       ) : (
-        <p>Loading...</p>
+        <p>No coins found.</p>
       )}
     </div>
   );
 }
+
 
 
 // import { useEffect, useState } from "react";

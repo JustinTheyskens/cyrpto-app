@@ -1,6 +1,7 @@
 // utility function
 import axios from "axios";
 
+// coin data interface
 export interface CoinData {
   id: string;
   rank: string;
@@ -9,7 +10,9 @@ export interface CoinData {
   priceUsd: string;
 }
 
+// pulling from API
 export const fetchCoins = async (limit: number = 10): Promise<CoinData[] | null> => {
+  // try / catch for error handling - always use when pulling from API or DB
   try {
     const response = await axios.get(`https://api.coincap.io/v2/assets?limit=${limit}`);
     return response.data.data;
